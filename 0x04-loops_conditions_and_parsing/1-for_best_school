@@ -1,0 +1,7 @@
+#!/bin/env bash
+#A script to display text 10 times
+
+for ((i=0; i < 11; i++))
+do
+   echo "Best School"
+done
