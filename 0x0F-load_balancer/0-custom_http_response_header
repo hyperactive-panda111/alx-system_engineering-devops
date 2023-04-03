@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#Bash script for server configuration
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo chown $USER:$USER /var/www/html/index.html
+sudo touch index.html /var/www/html
+sudo echo 'Hello World!' > /var/www/html/index.html
+sudo touch /var/www/html/404.html
+sudo echo "Ceci n'est pas une page" > /var/www/html/404.html
+sudo chown $USER:$USER /etc/nginx/sites-available/
+sed -i '/server_name _/a location /redirect_me { rewrite ^ https://www.youtube.com permanent: }' /etc/nginx/sites-available/default
+sed -i '/server_name _/a error_page 404 /404.html; location = /404.html' /etc/nginx/available-available/default
+
+#adding http header in server web-02
+sudo sed -i '/server_name _/a add_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
+sudo service nginx restart
