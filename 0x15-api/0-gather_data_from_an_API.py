@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ''' Python script to extract employee info using the JSONPlaceholder API'''
-import requests 
+import requests
 import sys
 
 if __name__ == '__main__':
